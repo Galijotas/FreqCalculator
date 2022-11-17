@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Collections;
 
 namespace FreqCalculator
@@ -10,7 +5,6 @@ namespace FreqCalculator
     public class FreqCalc
     {
         int elementPosition;
-        
         public void countFreq(int []arr)
         {
             Array.Sort(arr);
@@ -59,9 +53,35 @@ namespace FreqCalculator
                     misNumber++;
                 }
             }
+
+            int[] finalNumber = new int[numbersNew.Count];
+            int[] finalFrequency = new int[freqNew.Count];
             
-            Console.WriteLine("Frequency: {0}", string.Join(",", freqNew.ToArray()));
-            Console.WriteLine("Number: {0}", string.Join(",", numbersNew.ToArray()));         
+            numbersNew.CopyTo(finalNumber);
+            freqNew.CopyTo(finalFrequency);
+
+            DrawGraph(finalFrequency, finalNumber);   
+        }
+
+        public void DrawGraph(int[] frequencyArray, int[] numberArray)
+        {
+            for (int i = 0; i < numberArray.Length; i++)
+            {
+                Console.Write(numberArray[i]);
+                if (frequencyArray[i] != 0)
+                {
+                    for(int j = 1; j <= frequencyArray[i]; j++)
+                    {
+                        Console.Write(" *");
+                    }
+                }
+                else
+                {
+                    Console.Write("");
+                }               
+
+                Console.WriteLine();
+            }
         }
     }
 }
